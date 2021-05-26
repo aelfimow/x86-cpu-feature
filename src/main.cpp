@@ -48,6 +48,9 @@ try
     if (__builtin_cpu_is("amdfam17h"))      std::cout << "AMD Family 17h CPU" << std::endl;
     if (__builtin_cpu_is("znver1"))         std::cout << "AMD Family 17h Zen version 1" << std::endl;
     if (__builtin_cpu_is("znver2"))         std::cout << "AMD Family 17h Zen version 2" << std::endl;
+#if 0
+    if (__builtin_cpu_is("amdfam19h"))      std::cout << "AMD Family 19h CPU" << std::endl;
+#endif
 
     return EXIT_SUCCESS;
 }
