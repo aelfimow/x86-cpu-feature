@@ -136,7 +136,7 @@ CXXFLAGS += -Wpacked-bitfield-compat
 CXXFLAGS += -Wpacked-not-aligned
 CXXFLAGS += -Wno-padded
 CXXFLAGS += -Wparentheses
-CXXFLAGS += -Wpedantic         # Disabled due to usage of __int128
+CXXFLAGS += -Wpedantic
 CXXFLAGS += -Wpessimizing-move
 CXXFLAGS += -Wplacement-new=2
 CXXFLAGS += -Wpmf-conversions
