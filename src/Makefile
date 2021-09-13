@@ -232,8 +232,12 @@ CXXFLAGS += -Wzero-as-null-pointer-constant
 FILES = $(wildcard *.cpp)
 FILES_OBJ = $(FILES:.cpp=.o)
 
-all: $(FILES_OBJ)
+all: $(FILES_OBJ) main.asm
 	$(CXX) $(FILES_OBJ) -o x86-cpu-feature.exe
+
+main.asm: main.cpp
+	$(CXX) -S main.cpp
+	c++filt < main.s > main.asm
 
 deps:
 	$(CXX) -MM $(FILES) > Makefile.deps
