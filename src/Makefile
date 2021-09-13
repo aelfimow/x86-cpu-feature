@@ -4,7 +4,7 @@
 CXXFLAGS  = -O3 -m64
 CXXFLAGS += -Wall
 CXXFLAGS += -Wextra
-#CXXFLAGS += -pedantic      # Disabled due to usage of __int128
+CXXFLAGS += -pedantic
 CXXFLAGS += -Weffc++
 CXXFLAGS += -std=c++17
 CXXFLAGS += -Werror
@@ -136,7 +136,7 @@ CXXFLAGS += -Wpacked-bitfield-compat
 CXXFLAGS += -Wpacked-not-aligned
 CXXFLAGS += -Wno-padded
 CXXFLAGS += -Wparentheses
-#CXXFLAGS += -Wpedantic         # Disabled due to usage of __int128
+CXXFLAGS += -Wpedantic         # Disabled due to usage of __int128
 CXXFLAGS += -Wpessimizing-move
 CXXFLAGS += -Wplacement-new=2
 CXXFLAGS += -Wpmf-conversions
@@ -183,7 +183,7 @@ CXXFLAGS += -Wsuggest-attribute=const
 CXXFLAGS += -Wsuggest-attribute=format
 CXXFLAGS += -Wsuggest-attribute=malloc
 CXXFLAGS += -Wsuggest-attribute=noreturn
-#CXXFLAGS += -Wsuggest-attribute=pure
+CXXFLAGS += -Wsuggest-attribute=pure
 CXXFLAGS += -Wsuggest-final-methods
 CXXFLAGS += -Wsuggest-final-types
 CXXFLAGS += -Wsuggest-override
