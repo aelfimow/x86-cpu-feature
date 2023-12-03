@@ -58,6 +58,46 @@ try
         { []() -> bool { return __builtin_cpu_is("znver3") ? true : false; },          "AMD Family 19h Zen version 3" }
     };
 
+    std::list<predicate_string> const Features
+    {
+        { []() -> bool { return __builtin_cpu_supports("cmov") ? true : false; },            "CMOV instruction" },
+        { []() -> bool { return __builtin_cpu_supports("mmx") ? true : false; },             "MMX instructions" },
+        { []() -> bool { return __builtin_cpu_supports("popcnt") ? true : false; },          "POPCNT instruction" },
+        { []() -> bool { return __builtin_cpu_supports("sse") ? true : false; },             "SSE instructions" },
+        { []() -> bool { return __builtin_cpu_supports("sse2") ? true : false; },            "SSE2 instructions" },
+        { []() -> bool { return __builtin_cpu_supports("sse3") ? true : false; },            "SSE3 instructions" },
+        { []() -> bool { return __builtin_cpu_supports("ssse3") ? true : false; },           "SSSE3 instructions" },
+        { []() -> bool { return __builtin_cpu_supports("sse4.1") ? true : false; },          "SSE4.1 instructions" },
+        { []() -> bool { return __builtin_cpu_supports("sse4.2") ? true : false; },          "SSE4.2 instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx") ? true : false; },             "AVX instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx2") ? true : false; },            "AVX2 instructions" },
+        { []() -> bool { return __builtin_cpu_supports("sse4a") ? true : false; },           "SSE4A instructions" },
+        { []() -> bool { return __builtin_cpu_supports("fma4") ? true : false; },            "FMA4 instructions" },
+        { []() -> bool { return __builtin_cpu_supports("xop") ? true : false; },             "XOP instructions" },
+        { []() -> bool { return __builtin_cpu_supports("fma") ? true : false; },             "FMA instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512f") ? true : false; },         "AVX512F instructions" },
+        { []() -> bool { return __builtin_cpu_supports("bmi") ? true : false; },             "BMI instructions" },
+        { []() -> bool { return __builtin_cpu_supports("bmi2") ? true : false; },            "BMI2 instructions" },
+        { []() -> bool { return __builtin_cpu_supports("aes") ? true : false; },             "AES instructions" },
+        { []() -> bool { return __builtin_cpu_supports("pclmul") ? true : false; },          "PCLMUL instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512vl") ? true : false; },        "AVX512VL instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512bw") ? true : false; },        "AVX512BW instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512dq") ? true : false; },        "AVX512DQ instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512cd") ? true : false; },        "AVX512CD instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512er") ? true : false; },        "AVX512ER instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512pf") ? true : false; },        "AVX512PF instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512vbmi") ? true : false; },      "AVX512VBMI instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512ifma") ? true : false; },      "AVX512IFMA instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx5124vnniw") ? true : false; },    "AVX5124VNNIW instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx5124fmaps") ? true : false; },    "AVX5124FMAPS instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512vpopcntdq") ? true : false; }, "AVX512VPOPCNTDQ instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512vbmi2") ? true : false; },     "AVX512VBMI2 instructions" },
+        { []() -> bool { return __builtin_cpu_supports("gfni") ? true : false; },            "GFNI instructions" },
+        { []() -> bool { return __builtin_cpu_supports("vpclmulqdq") ? true : false; },      "VPCLMULQDQ instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512vnni") ? true : false; },      "AVX512VNNI instructions" },
+        { []() -> bool { return __builtin_cpu_supports("avx512bitalg") ? true : false; },    "AVX512BITALG instructions" }
+    };
+
     for (auto const &cpu: CPUs)
     {
         auto const &predicate = cpu.first;
@@ -69,42 +109,16 @@ try
         }
     }
 
-    if (__builtin_cpu_supports("cmov"))             std::cout << "CMOV instruction" << std::endl;
-    if (__builtin_cpu_supports("mmx"))              std::cout << "MMX instructions" << std::endl;
-    if (__builtin_cpu_supports("popcnt"))           std::cout << "POPCNT instruction" << std::endl;
-    if (__builtin_cpu_supports("sse"))              std::cout << "SSE instructions" << std::endl;
-    if (__builtin_cpu_supports("sse2"))             std::cout << "SSE2 instructions" << std::endl;
-    if (__builtin_cpu_supports("sse3"))             std::cout << "SSE3 instructions" << std::endl;
-    if (__builtin_cpu_supports("ssse3"))            std::cout << "SSSE3 instructions" << std::endl;
-    if (__builtin_cpu_supports("sse4.1"))           std::cout << "SSE4.1 instructions" << std::endl;
-    if (__builtin_cpu_supports("sse4.2"))           std::cout << "SSE4.2 instructions" << std::endl;
-    if (__builtin_cpu_supports("avx"))              std::cout << "AVX instructions" << std::endl;
-    if (__builtin_cpu_supports("avx2"))             std::cout << "AVX2 instructions" << std::endl;
-    if (__builtin_cpu_supports("sse4a"))            std::cout << "SSE4A instructions" << std::endl;
-    if (__builtin_cpu_supports("fma4"))             std::cout << "FMA4 instructions" << std::endl;
-    if (__builtin_cpu_supports("xop"))              std::cout << "XOP instructions" << std::endl;
-    if (__builtin_cpu_supports("fma"))              std::cout << "FMA instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512f"))          std::cout << "AVX512F instructions" << std::endl;
-    if (__builtin_cpu_supports("bmi"))              std::cout << "BMI instructions" << std::endl;
-    if (__builtin_cpu_supports("bmi2"))             std::cout << "BMI2 instructions" << std::endl;
-    if (__builtin_cpu_supports("aes"))              std::cout << "AES instructions" << std::endl;
-    if (__builtin_cpu_supports("pclmul"))           std::cout << "PCLMUL instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512vl"))         std::cout << "AVX512VL instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512bw"))         std::cout << "AVX512BW instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512dq"))         std::cout << "AVX512DQ instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512cd"))         std::cout << "AVX512CD instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512er"))         std::cout << "AVX512ER instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512pf"))         std::cout << "AVX512PF instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512vbmi"))       std::cout << "AVX512VBMI instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512ifma"))       std::cout << "AVX512IFMA instructions" << std::endl;
-    if (__builtin_cpu_supports("avx5124vnniw"))     std::cout << "AVX5124VNNIW instructions" << std::endl;
-    if (__builtin_cpu_supports("avx5124fmaps"))     std::cout << "AVX5124FMAPS instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512vpopcntdq"))  std::cout << "AVX512VPOPCNTDQ instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512vbmi2"))      std::cout << "AVX512VBMI2 instructions" << std::endl;
-    if (__builtin_cpu_supports("gfni"))             std::cout << "GFNI instructions" << std::endl;
-    if (__builtin_cpu_supports("vpclmulqdq"))       std::cout << "VPCLMULQDQ instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512vnni"))       std::cout << "AVX512VNNI instructions" << std::endl;
-    if (__builtin_cpu_supports("avx512bitalg"))     std::cout << "AVX512BITALG instructions" << std::endl;
+    for (auto const &feature: Features)
+    {
+        auto const &predicate = feature.first;
+        auto const &str = feature.second;
+
+        if (predicate())
+        {
+            std::cout << str << std::endl;
+        }
+    }
 
     return EXIT_SUCCESS;
 }
