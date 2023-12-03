@@ -1,57 +1,73 @@
 #include <iostream>
-#include <map>
+#include <utility>
+#include <functional>
 #include <string>
+#include <list>
+
+using predicate_string = std::pair<std::function<bool ()>, std::string>;
 
 int main(int, char **)
 try
 {
     __builtin_cpu_init();
 
-    if (__builtin_cpu_is("amd"))            std::cout << "AMD CPU" << std::endl;
-    if (__builtin_cpu_is("intel"))          std::cout << "Intel CPU" << std::endl;
-    if (__builtin_cpu_is("atom"))           std::cout << "Intel Atom CPU" << std::endl;
-    if (__builtin_cpu_is("slm"))            std::cout << "Intel Silvermont CPU" << std::endl;
-    if (__builtin_cpu_is("core2"))          std::cout << "Intel Core 2 CPU" << std::endl;
-    if (__builtin_cpu_is("corei7"))         std::cout << "Intel Core i7 CPU" << std::endl;
-    if (__builtin_cpu_is("nehalem"))        std::cout << "Intel Core i7 Nehalem CPU" << std::endl;
-    if (__builtin_cpu_is("westmere"))       std::cout << "Intel Core i7 Westmere CPU" << std::endl;
-    if (__builtin_cpu_is("sandybridge"))    std::cout << "Intel Core i7 Sandy Bridge CPU" << std::endl;
-    if (__builtin_cpu_is("ivybridge"))      std::cout << "Intel Core i7 Ivy Bridge CPU" << std::endl;
-    if (__builtin_cpu_is("haswell"))        std::cout << "Intel Core i7 Haswell CPU" << std::endl;
-    if (__builtin_cpu_is("broadwell"))      std::cout << "Intel Core i7 Broadwell CPU" << std::endl;
-    if (__builtin_cpu_is("skylake"))        std::cout << "Intel Core i7 Skylake CPU" << std::endl;
-    if (__builtin_cpu_is("skylake-avx512")) std::cout << "Intel Core i7 Skylake AVX512 CPU" << std::endl;
-    if (__builtin_cpu_is("cannonlake"))     std::cout << "Intel Core i7 Cannon Lake CPU" << std::endl;
-    if (__builtin_cpu_is("icelake-client")) std::cout << "Intel Core i7 Ice Lake Client CPU" << std::endl;
-    if (__builtin_cpu_is("icelake-server")) std::cout << "Intel Core i7 Ice Lake Server CPU" << std::endl;
-    if (__builtin_cpu_is("cascadelake"))    std::cout << "Intel Core i7 Cascadelake CPU" << std::endl;
-    if (__builtin_cpu_is("tigerlake"))      std::cout << "Intel Core i7 Tigerlake CPU" << std::endl;
-    if (__builtin_cpu_is("cooperlake"))     std::cout << "Intel Core i7 Cooperlake CPU" << std::endl;
-    if (__builtin_cpu_is("bonnell"))        std::cout << "Intel Atom Bonnell CPU" << std::endl;
-    if (__builtin_cpu_is("silvermont"))     std::cout << "Intel Atom Silvermont CPU" << std::endl;
-    if (__builtin_cpu_is("goldmont"))       std::cout << "Intel Atom Goldmont CPU" << std::endl;
-    if (__builtin_cpu_is("goldmont-plus"))  std::cout << "Intel Atom Goldmont Plus CPU" << std::endl;
-    if (__builtin_cpu_is("tremont"))        std::cout << "Intel Atom Tremont CPU" << std::endl;
-    if (__builtin_cpu_is("knl"))            std::cout << "Intel Knights Landing CPU" << std::endl;
-    if (__builtin_cpu_is("knm"))            std::cout << "Intel Knights Mill CPU" << std::endl;
-    if (__builtin_cpu_is("amdfam10h"))      std::cout << "AMD Family 10h CPU" << std::endl;
-    if (__builtin_cpu_is("barcelona"))      std::cout << "AMD Family 10h Barcelona CPU" << std::endl;
-    if (__builtin_cpu_is("shanghai"))       std::cout << "AMD Family 10h Shanghai CPU" << std::endl;
-    if (__builtin_cpu_is("istanbul"))       std::cout << "AMD Family 10h Istanbul CPU" << std::endl;
-    if (__builtin_cpu_is("btver1"))         std::cout << "AMD Family 14h CPU" << std::endl;
-    if (__builtin_cpu_is("amdfam15h"))      std::cout << "AMD Family 15h CPU" << std::endl;
-    if (__builtin_cpu_is("bdver1"))         std::cout << "AMD Family 15h Bulldozer version 1" << std::endl;
-    if (__builtin_cpu_is("bdver2"))         std::cout << "AMD Family 15h Bulldozer version 2" << std::endl;
-    if (__builtin_cpu_is("bdver3"))         std::cout << "AMD Family 15h Bulldozer version 3" << std::endl;
-    if (__builtin_cpu_is("bdver4"))         std::cout << "AMD Family 15h Bulldozer version 4" << std::endl;
-    if (__builtin_cpu_is("btver2"))         std::cout << "AMD Family 16h CPU" << std::endl;
-    if (__builtin_cpu_is("amdfam17h"))      std::cout << "AMD Family 17h CPU" << std::endl;
-    if (__builtin_cpu_is("znver1"))         std::cout << "AMD Family 17h Zen version 1" << std::endl;
-    if (__builtin_cpu_is("znver2"))         std::cout << "AMD Family 17h Zen version 2" << std::endl;
-#if 0
-    if (__builtin_cpu_is("amdfam19h"))      std::cout << "AMD Family 19h CPU" << std::endl;
-    if (__builtin_cpu_is("znver3"))         std::cout << "AMD Family 19h Zen version 3" << std::endl;
-#endif
+    std::list<predicate_string> const CPUs
+    {
+        { []() -> bool { return __builtin_cpu_is("amd") ? true : false; },             "AMD CPU" },
+        { []() -> bool { return __builtin_cpu_is("intel") ? true : false; },           "Intel CPU" },
+        { []() -> bool { return __builtin_cpu_is("atom") ? true : false; },            "Intel Atom CPU" },
+        { []() -> bool { return __builtin_cpu_is("slm") ? true : false; },             "Intel Silvermont CPU" },
+        { []() -> bool { return __builtin_cpu_is("core2") ? true : false; },           "Intel Core 2 CPU" },
+        { []() -> bool { return __builtin_cpu_is("corei7") ? true : false; },          "Intel Core i7 CPU" },
+        { []() -> bool { return __builtin_cpu_is("nehalem") ? true : false; },         "Intel Core i7 Nehalem CPU" },
+        { []() -> bool { return __builtin_cpu_is("westmere") ? true : false; },        "Intel Core i7 Westmere CPU" },
+        { []() -> bool { return __builtin_cpu_is("sandybridge") ? true : false; },     "Intel Core i7 Sandy Bridge CPU" },
+        { []() -> bool { return __builtin_cpu_is("ivybridge") ? true : false; },       "Intel Core i7 Ivy Bridge CPU" },
+        { []() -> bool { return __builtin_cpu_is("haswell") ? true : false; },         "Intel Core i7 Haswell CPU" },
+        { []() -> bool { return __builtin_cpu_is("broadwell") ? true : false; },       "Intel Core i7 Broadwell CPU" },
+        { []() -> bool { return __builtin_cpu_is("skylake") ? true : false; },         "Intel Core i7 Skylake CPU" },
+        { []() -> bool { return __builtin_cpu_is("skylake-avx512") ? true : false; },  "Intel Core i7 Skylake AVX512 CPU" },
+        { []() -> bool { return __builtin_cpu_is("cannonlake") ? true : false; },      "Intel Core i7 Cannon Lake CPU" },
+        { []() -> bool { return __builtin_cpu_is("icelake-client") ? true : false; },  "Intel Core i7 Ice Lake Client CPU" },
+        { []() -> bool { return __builtin_cpu_is("icelake-server") ? true : false; },  "Intel Core i7 Ice Lake Server CPU" },
+        { []() -> bool { return __builtin_cpu_is("cascadelake") ? true : false; },     "Intel Core i7 Cascadelake CPU" },
+        { []() -> bool { return __builtin_cpu_is("tigerlake") ? true : false; },       "Intel Core i7 Tigerlake CPU" },
+        { []() -> bool { return __builtin_cpu_is("cooperlake") ? true : false; },      "Intel Core i7 Cooperlake CPU" },
+        { []() -> bool { return __builtin_cpu_is("bonnell") ? true : false; },         "Intel Atom Bonnell CPU" },
+        { []() -> bool { return __builtin_cpu_is("silvermont") ? true : false; },      "Intel Atom Silvermont CPU" },
+        { []() -> bool { return __builtin_cpu_is("goldmont") ? true : false; },        "Intel Atom Goldmont CPU" },
+        { []() -> bool { return __builtin_cpu_is("goldmont-plus") ? true : false; },   "Intel Atom Goldmont Plus CPU" },
+        { []() -> bool { return __builtin_cpu_is("tremont") ? true : false; },         "Intel Atom Tremont CPU" },
+        { []() -> bool { return __builtin_cpu_is("knl") ? true : false; },             "Intel Knights Landing CPU" },
+        { []() -> bool { return __builtin_cpu_is("knm") ? true : false; },             "Intel Knights Mill CPU" },
+        { []() -> bool { return __builtin_cpu_is("amdfam10h") ? true : false; },       "AMD Family 10h CPU" },
+        { []() -> bool { return __builtin_cpu_is("barcelona") ? true : false; },       "AMD Family 10h Barcelona CPU" },
+        { []() -> bool { return __builtin_cpu_is("shanghai") ? true : false; },        "AMD Family 10h Shanghai CPU" },
+        { []() -> bool { return __builtin_cpu_is("istanbul") ? true : false; },        "AMD Family 10h Istanbul CPU" },
+        { []() -> bool { return __builtin_cpu_is("btver1") ? true : false; },          "AMD Family 14h CPU" },
+        { []() -> bool { return __builtin_cpu_is("amdfam15h") ? true : false; },       "AMD Family 15h CPU" },
+        { []() -> bool { return __builtin_cpu_is("bdver1") ? true : false; },          "AMD Family 15h Bulldozer version 1" },
+        { []() -> bool { return __builtin_cpu_is("bdver2") ? true : false; },          "AMD Family 15h Bulldozer version 2" },
+        { []() -> bool { return __builtin_cpu_is("bdver3") ? true : false; },          "AMD Family 15h Bulldozer version 3" },
+        { []() -> bool { return __builtin_cpu_is("bdver4") ? true : false; },          "AMD Family 15h Bulldozer version 4" },
+        { []() -> bool { return __builtin_cpu_is("btver2") ? true : false; },          "AMD Family 16h CPU" },
+        { []() -> bool { return __builtin_cpu_is("amdfam17h") ? true : false; },       "AMD Family 17h CPU" },
+        { []() -> bool { return __builtin_cpu_is("znver1") ? true : false; },          "AMD Family 17h Zen version 1" },
+        { []() -> bool { return __builtin_cpu_is("znver2") ? true : false; },          "AMD Family 17h Zen version 2" },
+        { []() -> bool { return __builtin_cpu_is("amdfam19h") ? true : false; },       "AMD Family 19h CPU" },
+        { []() -> bool { return __builtin_cpu_is("znver3") ? true : false; },          "AMD Family 19h Zen version 3" }
+    };
+
+    for (auto const &cpu: CPUs)
+    {
+        auto const &predicate = cpu.first;
+        auto const &str = cpu.second;
+
+        if (predicate())
+        {
+            std::cout << str << std::endl;
+        }
+    }
 
     if (__builtin_cpu_supports("cmov"))             std::cout << "CMOV instruction" << std::endl;
     if (__builtin_cpu_supports("mmx"))              std::cout << "MMX instructions" << std::endl;
