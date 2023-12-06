@@ -56,6 +56,11 @@ try
         { []() -> bool { return __builtin_cpu_is("znver2") ? true : false; },          "AMD Family 17h Zen version 2" },
         { []() -> bool { return __builtin_cpu_is("amdfam19h") ? true : false; },       "AMD Family 19h CPU" },
         { []() -> bool { return __builtin_cpu_is("znver3") ? true : false; },          "AMD Family 19h Zen version 3" }
+#if 0
+        { []() -> bool { return __builtin_cpu_is("lujiazui") ? true : false; },        "ZHAOXIN lujiazui CPU" }
+        { []() -> bool { return __builtin_cpu_is("yongfeng") ? true : false; },        "ZHAOXIN yongfeng CPU" }
+        { []() -> bool { return __builtin_cpu_is("znver4") ? true : false; },          "AMD Family 19h Zen version 4" }
+#endif
     };
 
     std::list<predicate_string> const Features
