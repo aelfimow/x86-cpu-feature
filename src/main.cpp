@@ -100,7 +100,12 @@ try
         { []() -> bool { return __builtin_cpu_supports("gfni") ? true : false; },            "GFNI instructions" },
         { []() -> bool { return __builtin_cpu_supports("vpclmulqdq") ? true : false; },      "VPCLMULQDQ instructions" },
         { []() -> bool { return __builtin_cpu_supports("avx512vnni") ? true : false; },      "AVX512VNNI instructions" },
-        { []() -> bool { return __builtin_cpu_supports("avx512bitalg") ? true : false; },    "AVX512BITALG instructions" }
+        { []() -> bool { return __builtin_cpu_supports("avx512bitalg") ? true : false; },    "AVX512BITALG instructions" },
+        {
+            []() -> bool { return __builtin_cpu_supports("x86-64") ? true : false; },
+
+            "Baseline x86-64 microarchitecture level (as defined in x86-64 psABI)"
+        }
     };
 
     for (auto const &cpu: CPUs)
