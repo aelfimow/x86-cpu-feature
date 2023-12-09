@@ -1,3 +1,8 @@
+#include <utility>
+#include <functional>
+#include <string>
+#include <list>
+
 #include "CPUs.h"
 
 std::list<std::pair<std::function<bool ()>, std::string>> CreateCPUs()
