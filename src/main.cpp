@@ -105,6 +105,11 @@ try
             []() -> bool { return __builtin_cpu_supports("x86-64") ? true : false; },
 
             "Baseline x86-64 microarchitecture level (as defined in x86-64 psABI)"
+        },
+        {
+            []() -> bool { return __builtin_cpu_supports("x86-64-v2") ? true : false; },
+
+            "x86-64-v2 microarchitecture level"
         }
     };
 
