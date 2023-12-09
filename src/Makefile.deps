@@ -1,2 +1,2 @@
 CPUs.o: CPUs.cpp CPUs.h
-main.o: main.cpp
+main.o: main.cpp CPUs.h
