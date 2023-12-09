@@ -115,6 +115,11 @@ try
             []() -> bool { return __builtin_cpu_supports("x86-64-v3") ? true : false; },
 
             "x86-64-v3 microarchitecture level"
+        },
+        {
+            []() -> bool { return __builtin_cpu_supports("x86-64-v4") ? true : false; },
+
+            "x86-64-v4 microarchitecture level"
         }
     };
 
