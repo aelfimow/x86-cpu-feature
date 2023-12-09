@@ -1,2 +1,3 @@
 CPUs.o: CPUs.cpp CPUs.h
-main.o: main.cpp CPUs.h
+Features.o: Features.cpp Features.h
+main.o: main.cpp CPUs.h Features.h
